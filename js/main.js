@@ -1,3 +1,5 @@
+// FUNCIONES AUX
+
 function calcularEdad(anioNacimientoText) {
   const anioNacimiento = parseInt(anioNacimientoText);
   const anioActual = 2026;
@@ -57,7 +59,56 @@ function mostrarResumen(cliente, edadCliente, cantidadItems, subtotal, totalFina
 }
 
 
-// simulador de compra
+// ARRAYS
+
+function gestionarCatalogo() {
+
+  // Inicialización semántica de la colección (5 elementos)
+  const catalogoDisponible = ["cuerda", "casco", "cinta express", "magnesio", "arnés"];
+
+  // B. Métodos de extremos (unshift, push, pop)
+  catalogoDisponible.unshift("mosquetón");
+  catalogoDisponible.push("magnesiera");
+  const equipoAgotado = catalogoDisponible.pop();
+  console.log(`Se ha eliminado el elemento por stock agotado: ${equipoAgotado}`);
+
+  // Búsqueda y validación 
+  const productoIngresado = prompt("¿Qué equipo estás buscando hoy en el catálogo?");
+
+  if (productoIngresado !== null) {
+    const productoBuscado = productoIngresado.toLowerCase();
+
+    if (catalogoDisponible.includes(productoBuscado)) {
+      const posicion = catalogoDisponible.indexOf(productoBuscado);
+      alert(`¡Sí! Encontramos tu producto en la posición N° ${posicion}`);
+      console.log(`✅ "${productoBuscado}" está disponible en la posición ${posicion}`);
+    } else {
+      alert("Disculpa :( este producto no está disponible");
+      console.log(`❌ "${productoBuscado}" no se encuentra en stock`);
+    }
+  } else {
+    console.log("El usuario canceló la búsqueda en el catálogo.");
+  }
+
+  // Splice para actualizar un índice específico
+  catalogoDisponible.splice(2, 1, "cuerda pro de 70mts");
+
+  // Función con for...of para listar inventario formateado
+  function listarInventario(lista) {
+    console.log("--- INVENTARIO ACTUALIZADO DE LÍNEA VERTICAL ---");
+    for (const equipo of lista) {
+      console.log(`Producto: ${equipo}`);
+    }
+    console.log(`Total de ítems: ${lista.length}`);
+  }
+
+  // Reporte final de inventario
+  listarInventario(catalogoDisponible);
+}
+
+
+// SIMULADOR DE COMPRA
+
 function iniciarSimulador() {
   const nombre = prompt("Ingresá tu nombre");
   const apellido = prompt("Ingresá tu apellido");
@@ -69,6 +120,9 @@ function iniciarSimulador() {
     const nombreCompleto = `${nombre} ${apellido}`;
 
     alert(`¡Hola ${nombreCompleto}! Tenés ${edad} años. Bienvenido/a a Línea Vertical - Equipamiento de Escalada 🧗‍♂️`);
+
+    // Sección de gestión del catálogo y arrays
+    gestionarCatalogo();
 
     let totalCompra = 0;
     let cantidadProductos = 0;
@@ -126,49 +180,5 @@ function iniciarSimulador() {
   }
 }
 
-// Ejecutamos el simulador de compra
+// Simulador de compra completo
 iniciarSimulador();
-
-
-// Declaración del array con 5 elementos iniciales en minúsculas
-const catalogoDisponible = ["cuerda", "casco", "cinta express", "magnesio", "arnés"];
-
-// Unshift y push
-catalogoDisponible.unshift("mosquetón");
-catalogoDisponible.push("magnesiera");
-const equipoAgotado = catalogoDisponible.pop();
-
-console.log(`Se ha eliminado el elemento: ${equipoAgotado}`);
-
-// Búsqueda y validación evita null
-const productoIngresado = prompt("¿Qué estás buscando hoy?");
-
-if (productoIngresado !== null) {
-  const productoBuscado = productoIngresado.toLowerCase();
-
-  if (catalogoDisponible.includes(productoBuscado)) {
-    const posicion = catalogoDisponible.indexOf(productoBuscado);
-    alert(`¡Sí! Encontramos tu producto en la posición N° ${posicion}`);
-    console.log(`✅ "${productoBuscado}" está disponible en la posición ${posicion}`);
-  } else {
-    alert("Disculpa :( este producto no está disponible");
-    console.log(`❌ "${productoBuscado}" no se encuentra en stock`);
-  }
-} else {
-  console.log("El usuario canceló la búsqueda.");
-}
-
-// Splice para actualizar un índice específico
-catalogoDisponible.splice(2, 1, "cuerda pro de 70mts");
-
-// Función con for...of para listar inventario
-function listarInventario(lista) {
-  console.log("--- INVENTARIO ACTUALIZADO DE LÍNEA VERTICAL ---");
-  for (const equipo of lista) {
-    console.log(`Producto: ${equipo}`);
-  }
-  console.log(`Total de ítems: ${lista.length}`);
-}
-
-// reporte final de inventario
-listarInventario(catalogoDisponible);
