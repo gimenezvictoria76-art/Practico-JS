@@ -182,3 +182,53 @@ function iniciarSimulador() {
 
 // Simulador de compra completo
 iniciarSimulador();
+
+// OBJETOS
+
+// Definición de la Clase
+class Equipamiento {
+  constructor(nombre, stock, caracteristicas, precio) {
+    this.nombre = nombre;
+    this.stock = stock;
+    this.caracteristicas = caracteristicas;
+    this.precio = precio;
+  }
+
+  // Método de instancia para aplicar descuento
+  aplicarDescuento(porcentaje) {
+    const descuento = this.precio * (porcentaje / 100);
+    this.precio = this.precio - descuento;
+  }
+}
+
+// 2. Instanciación de objetos usando new
+const pedulas = new Equipamiento("Pédulas", 6, "Suela Vibram rígida", 120000);
+const cuerda = new Equipamiento("Cuerda Dinámica 60m 9.8mm", 2, "Dinámica color rosa", 180000);
+const arnes = new Equipamiento("Arnés Deportivo Regulable", 5, "Regulable y ligero", 75000);
+const magnesiera = new Equipamiento("Magnesiera + Magnesio 250g", 8, "Marca ProClimb", 18000);
+
+
+// 3. Verificación y prueba de métodos en todos los equipos
+console.log("--- CATÁLOGO INICIAL ---");
+console.log(pedulas);
+console.log(cuerda);
+console.log(arnes);
+console.log(magnesiera);
+
+console.log("\n--- APLICANDO DESCUENTOS Y PROBANDO MÉTODOS ---");
+
+// Probamos descuento en las pédulas
+pedulas.aplicarDescuento(10);
+console.log(`Precio final de ${pedulas.nombre}: $${pedulas.precio}`);
+
+// Probamos descuento en la cuerda
+cuerda.aplicarDescuento(20);
+console.log(`Precio final de ${cuerda.nombre}: $${cuerda.precio}`);
+
+// Probamos descuento en el arnés
+arnes.aplicarDescuento(15);
+console.log(`Precio final de ${arnes.nombre}: $${arnes.precio}`);
+
+// Probamos descuento en la magnesiera
+magnesiera.aplicarDescuento(5);
+console.log(`Precio final de ${magnesiera.nombre}: $${magnesiera.precio}`);
